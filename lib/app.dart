@@ -9,10 +9,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: defaulTheme,
-      home: MyApp(),
-
-    );
+    return MaterialApp(theme: defaulTheme, home: ExchangeRatesPage());
   }
 }

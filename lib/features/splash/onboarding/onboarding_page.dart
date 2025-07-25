@@ -6,6 +6,7 @@ import 'package:todo/common/constants/app_colors.dart';
 import 'package:todo/common/constants/app_text_styles.dart';
 import 'package:todo/common/widgets/multi_text_button.dart';
 import 'package:todo/common/widgets/primary_button.dart';
+import 'package:todo/features/splash/lista/list_view_page.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -40,7 +41,17 @@ class OnboardingPage extends StatelessWidget {
               top: 16.0,
               bottom: 2.0,
             ),
-            child: PrimaryButton(text: 'Get Started', onPressed: () {}),
+            child: PrimaryButton(
+              text: 'Get Started',
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExchangeRatesPage(),
+                  ),
+                );
+              },
+            ),
           ),
           const SizedBox(height: 16.0),
           multiTextButton(
