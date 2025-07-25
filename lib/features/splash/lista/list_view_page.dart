@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:todo/common/constants/app_colors.dart';
 import 'package:todo/common/constants/app_text_styles.dart';
 import 'package:todo/common/services/api_service.dart';
+import 'package:todo/features/splash/onboarding/onboarding_page.dart';
 import 'exchange_detail_page.dart';
 
 class ExchangeRatesPage extends StatefulWidget {
@@ -37,7 +38,23 @@ class _ExchangeRatesPageState extends State<ExchangeRatesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cotações Financeiras')),
+      appBar: AppBar(
+  title: const Text('Cotações Financeiras'),
+  actions: [
+    IconButton(
+      icon: const Icon(Icons.logout),
+      tooltip: 'Sair',
+      onPressed: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const OnboardingPage(),
+          ),
+        );
+      },
+    ),
+  ],
+),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
