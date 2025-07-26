@@ -6,8 +6,7 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final String text;
 
-  const PrimaryButton({Key? key, this.onPressed, required this.text})
-    : super(key: key);
+  const PrimaryButton({super.key, this.onPressed, required this.text});
 
   final BorderRadius _borderRadius = const BorderRadius.all(
     Radius.circular(24.0),
