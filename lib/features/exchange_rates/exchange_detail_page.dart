@@ -5,11 +5,13 @@ import 'package:todo/common/constants/app_text_styles.dart';
 class ExchangeDetailPage extends StatelessWidget {
   final String currency;
   final dynamic rate;
+  final String date; // NOVO
 
   const ExchangeDetailPage({
     super.key,
     required this.currency,
     required this.rate,
+    required this.date, // NOVO
   });
 
   @override
@@ -32,9 +34,12 @@ class ExchangeDetailPage extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               'Taxa atual: $rate',
-              style: AppTextStyles.smallText.copyWith(
-                color: AppColors.grey,
-              ),
+              style: AppTextStyles.smallText.copyWith(color: AppColors.grey),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Data da Cotação: $date',
+              style: AppTextStyles.smallText.copyWith(color: AppColors.grey),
             ),
           ],
         ),

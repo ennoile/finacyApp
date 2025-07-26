@@ -15,6 +15,7 @@ class ExchangeRatesPage extends StatefulWidget {
 class _ExchangeRatesPageState extends State<ExchangeRatesPage> {
   final ApiService _apiService = ApiService();
   final Map<String, dynamic> _apiData = {};
+  final String codigoMoeda = "BRL";
 
   @override
   void initState() {
@@ -24,9 +25,10 @@ class _ExchangeRatesPageState extends State<ExchangeRatesPage> {
 
   Future<void> _loadData() async {
     try {
-      final data = await _apiService.fetchExchangeRates();
+      final data = await _apiService.fetchExchangeRates(codigoMoeda);
       setState(() {
-        _apiData.addAll(data);
+        _apiData['rates'] = data['rates'];
+        _apiData['date'] = data['date'];
       });
     } catch (_) {
       setState(() {
@@ -39,22 +41,20 @@ class _ExchangeRatesPageState extends State<ExchangeRatesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-  title: const Text('Cotações Financeiras'),
-  actions: [
-    IconButton(
-      icon: const Icon(Icons.logout),
-      tooltip: 'Sair',
-      onPressed: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const OnboardingPage(),
+        title: const Text('Cotações Financeiras'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Sair',
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const OnboardingPage()),
+              );
+            },
           ),
-        );
-      },
-    ),
-  ],
-),
+        ],
+      ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
@@ -84,7 +84,7 @@ class _ExchangeRatesPageState extends State<ExchangeRatesPage> {
               ),
             )
           else
-            ..._apiData.entries.map((entry) {
+            ..._apiData['rates'].entries.map((entry) {
               final currency = entry.key;
               final value = entry.value;
               return Card(
@@ -96,14 +96,17 @@ class _ExchangeRatesPageState extends State<ExchangeRatesPage> {
                     color: Colors.green,
                   ),
                   title: Text(currency),
-                  subtitle: Text('1 EUR = $value $currency'),
+                  subtitle: Text('1 $codigoMoeda = $value $currency'),
                   trailing: const Icon(Icons.arrow_forward_ios, size: 16),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) =>
-                            ExchangeDetailPage(currency: currency, rate: value),
+                        builder: (context) => ExchangeDetailPage(
+                          currency: currency,
+                          rate: value,
+                          date: _apiData['date'] ?? 'Data não disponível',
+                        ),
                       ),
                     );
                   },
