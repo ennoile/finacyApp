@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:todo/common/constants/app_colors.dart';
 import 'package:todo/common/constants/app_text_styles.dart';
-import 'package:todo/common/services/api_service.dart';
+import 'package:todo/services/api_service.dart';
 import 'package:todo/features/splash/onboarding/onboarding_page.dart';
-import 'exchange_detail_page.dart';
+import '../../exchange_rates/exchange_detail_page.dart';
 
 class ExchangeRatesPage extends StatefulWidget {
   const ExchangeRatesPage({super.key});

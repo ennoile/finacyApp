@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo/common/themes/default_theme.dart';
-import 'package:todo/features/sign_up/sign_up_page.dart';
+import 'package:todo/features/splash/sign_up/sign_up_page.dart';
 import 'package:todo/features/splash/lista/list_view_page.dart';
 import 'package:todo/features/splash/onboarding/onboarding_page.dart';
 
